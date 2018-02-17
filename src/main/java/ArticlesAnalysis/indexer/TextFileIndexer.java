@@ -22,13 +22,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * This terminal application creates an Apache Lucene index in a folder and adds files into this index
- * based on the input of the user.
+ * This terminal application creates an Apache Lucene index
+ * in a folder and adds files into this index.
  */
 public class TextFileIndexer {
     private StandardAnalyzer analyzer;
     private IndexWriter writer;
-    private ArrayList<File> queue = new ArrayList<>();
+    private ArrayList<File> queue;
     private String indexPath;
 
     /**
@@ -44,6 +44,7 @@ public class TextFileIndexer {
         analyzer = new StandardAnalyzer();
         writer = new IndexWriter(FSDirectory.open(Paths.get(indexPath)),
                 new IndexWriterConfig(analyzer));
+        queue = new ArrayList<>();
     }
 
     /**
