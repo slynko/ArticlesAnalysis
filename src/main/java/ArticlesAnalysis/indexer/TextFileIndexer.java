@@ -1,6 +1,7 @@
 package ArticlesAnalysis.indexer;
 
 import ArticlesAnalysis.utils.FileUtils;
+import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
  * in a folder and adds files into this index.
  */
 public class TextFileIndexer {
-    private StandardAnalyzer analyzer;
+    private RussianAnalyzer analyzer;
     private IndexWriter writer;
     private ArrayList<File> queue;
     private String indexPath;
@@ -41,7 +42,7 @@ public class TextFileIndexer {
         FileUtils.deleteFilesInFolder(indexPath);
 
         indexPath = indexDir;
-        analyzer = new StandardAnalyzer();
+        analyzer = new RussianAnalyzer();
         writer = new IndexWriter(FSDirectory.open(Paths.get(indexPath)),
                 new IndexWriterConfig(analyzer));
         queue = new ArrayList<>();
